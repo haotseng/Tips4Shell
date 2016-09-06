@@ -66,3 +66,11 @@ shell script 實用小技巧
     Loop=3 
     DEFAULT_VAR=
         
+---
+
+### 判斷 debian/ubuntu 是否已經安裝某個套件
+
+    判斷是否已經安裝了'git' 套件, 若沒有, 則使用 apt-get 來安裝'git'
+    
+    [[ $(dpkg-query -W -f='${db:Status-Abbrev}\n' git 2>/dev/null) != *ii* ]] && \
+    apt-get -qq -y --no-install-recommends install git
