@@ -1,6 +1,6 @@
-shell 實用小技巧
-=================
-
+shell script 實用小技巧
+=======================
+---
 ### IPv4 address 判斷
 
     找出/etc/hosts 中含有IP 的文字列
@@ -23,7 +23,7 @@ shell 實用小技巧
 1. [What regular expression can I use to match an IP address?](http://superuser.com/questions/202818/what-regular-expression-can-i-use-to-match-an-ip-address)
 2. [Shell 搭配正規式來檢測一字串是否為IPv4 格式之IP](http://www.rtfiber.com.tw/~changyj/shell/check_ip.pdf)
 
-
+---
 ### sed: 將找到字串存起來, 取出
 
     sed -n 's/\(La\)/\1Oo/p' dataf3
@@ -32,3 +32,37 @@ shell 實用小技巧
     
 參考來源: [[Linux] sed replace 指令](http://xiao-ming-chang.blogspot.tw/2013/06/linux-sed-replace.html)
 
+---
+### for i = 0 to 6, 或者 a to z 之使用方法
+
+    for i in {0..6}; do
+        echo $i
+    done
+
+    for i in {a..z}; do
+        echo $i
+    done
+
+
+---
+
+### 將命令列之參數轉換成 shell 內部的變數
+
+    $ cat test.sh
+    ## Script parameters handling
+    for i in "$@"; do
+	    if [[ $i == *=* ]]; then
+		    parameter=${i%%=*}
+		    value=${i##*=}
+		    echo "Command line: setting $parameter to ${value:-(empty)}"
+		    eval $parameter=$value
+	    fi
+    done
+    
+    $ test.sh KERNEL=new COLOR=red Loop=3 DEFAULT_VAR=
+    則在 test.sh 經過上面的for-loop 之後, 就會產生4個變數分別為:
+    KERNEL=new 
+    COLOR=red 
+    Loop=3 
+    DEFAULT_VAR=
+        
