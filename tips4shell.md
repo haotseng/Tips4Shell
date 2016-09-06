@@ -44,6 +44,8 @@ shell script 實用小技巧
     done
 
 
+參考來源: [Armbian](https://github.com/igorpecovnik/lib)
+
 ---
 
 ### 將命令列之參數轉換成 shell 內部的變數
@@ -65,7 +67,9 @@ shell script 實用小技巧
     COLOR=red 
     Loop=3 
     DEFAULT_VAR=
-        
+
+參考來源: [Armbian](https://github.com/igorpecovnik/lib)
+
 ---
 
 ### 判斷 debian/ubuntu 是否已經安裝某個套件
@@ -74,3 +78,20 @@ shell script 實用小技巧
     
     [[ $(dpkg-query -W -f='${db:Status-Abbrev}\n' git 2>/dev/null) != *ii* ]] && \
     apt-get -qq -y --no-install-recommends install git
+
+參考來源: [Armbian](https://github.com/igorpecovnik/lib)
+
+---
+
+### 檢查是否有 root 權限
+
+    檢查是否有 root 權限, 若沒有, 則離開程式.
+    
+    if [[ $EUID != 0 ]]; then
+        echo -e "[\e[0;35m warn \x1B[0m] This script requires root privileges"
+        sudo "$0" "$@"
+        exit $?
+    fi
+    
+參考來源: [Armbian](https://github.com/igorpecovnik/lib)
+
