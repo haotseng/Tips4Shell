@@ -95,3 +95,76 @@ shell script 實用小技巧
     
 參考來源: [Armbian](https://github.com/igorpecovnik/lib)
 
+
+---
+
+### 一次砍掉所有的 ``.svn`` 目錄(包含子目錄)
+
+
+    find . -type d -name '.svn' | xargs  rm -rf
+     
+同理, 也可以用來砍掉所有的``.DS_Store`` 檔
+
+    find . -type f -name '.DS_Store' | xargs  rm -f 
+
+砍掉所有的隱藏檔
+
+    find . -type f -name '.*' | xargs echo -rm -f
+
+除了 `.bash*` 以外, 其他的隱藏檔全部砍掉
+ 
+    find . -type f -name '.*' | grep -v ".bash*" | xargs -rm -f
+    
+<b>注意!!</b> 這個方法對於含有空白字元的檔案或者目錄名稱無效
+
+---
+
+### 找出正在執行中的shell script 的絕對路徑
+
+通常我們可以用 `dirname $0` 來取出此shell script 的路徑名稱. 但是這個路徑有可能是相對路徑. 但是有時候我想知道絕對路徑時, 該如何用呢?
+
+如下範例:
+
+    假設 /dirA/dirB/the_schell.sh 內容如下
+    
+    #!/bin/bash
+    DIR_PATH=$(dirname $0)
+    FULL_DIR_PATH=$(cd $(dirname $0) && pwd)
+    echo DIR_PATH=$DIR_PATH
+    echo FULL_DIR_PATH=$FULL_DIR_PATH
+    
+ 
+    若我在/dirA 目錄下執行此程式
+    
+    # cd /dirA
+    # ./dirB/the_shell.sh
+    DIR_NAME=./dirB
+    FULL_DIR_NAME=/dirA/dirB
+
+    
+---
+
+### 在shell script 中, 將函數的結果以指定變數傳回
+
+直接看範例:
+
+    $ cat ./test.sh
+    #!/bin/bash
+    function add100 () {
+      local value1=$1
+      local result_var_name=$2
+      eval $result_var_name=$(($value1+100))
+    }
+    sum=0
+    add100 30 "sum"
+    echo result=$sum
+ 
+
+    $ ./test.sh
+    result=130
+    
+
+此範例 `add100 函數` 將運算結果 放入 `sum` 變數中  
+
+
+
