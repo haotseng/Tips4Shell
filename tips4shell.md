@@ -138,8 +138,8 @@ shell script 實用小技巧
     
     # cd /dirA
     # ./dirB/the_shell.sh
-    DIR_NAME=./dirB
-    FULL_DIR_NAME=/dirA/dirB
+    DIR_PATH=./dirB
+    FULL_DIR_PATH=/dirA/dirB
 
     
 ---
