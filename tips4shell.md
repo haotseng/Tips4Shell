@@ -189,3 +189,23 @@ shell script 實用小技巧
     date -r test.txt +'%Y-%m-%d %H:%M:%S'
     
 參考來源: [Get file modification date/time in Bash script](http://www.linuxquestions.org/questions/programming-9/get-file-modification-date-time-in-bash-script-163731/)
+
+
+
+---
+
+### 將字串轉換成 hex code
+
+網路上找到兩種方法:
+
+    $ STR="hello"
+    $ HEXVAL=$(xxd -pu <<< "$STR")
+    $ echo "$HEXVAL"
+    6C6C6568A6F
+
+
+    $ HEXVAL=$(hexdump -e '"%X"' <<< "$STR")
+    $ echo "$HEXVAL"
+    6C6C6568A6F   
+    
+參考來源: [bash ascii to hex](http://stackoverflow.com/questions/12847328/bash-ascii-to-hex)
