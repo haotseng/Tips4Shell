@@ -209,3 +209,37 @@ shell script 實用小技巧
     6C6C6568A6F   
     
 參考來源: [bash ascii to hex](http://stackoverflow.com/questions/12847328/bash-ascii-to-hex)
+
+
+---
+### 使用變數來控制迴圈的次數
+
+直接看範例比較快:
+
+    #!/bin/bash
+    # 陣列共有3個元素
+    arr=("aaa" "bbb" "ccc")
+
+    # 算出陣列的MAX Index
+    maxidx=$((${#arr[@]}-1))
+
+    # 迴圈
+    for i in $(eval echo {0..$maxidx}); do
+      echo "i=$i"
+      echo "arr[${i}]=${arr[${i}]}"
+    done
+
+執行結果如下:
+
+    i=0
+    arr[0]=aaa
+    i=1
+    arr[1]=bbb
+    i=2
+    arr[2]=ccc
+
+
+重點就是在這行``for i in $(eval echo {0..$maxidx})``
+
+
+---
