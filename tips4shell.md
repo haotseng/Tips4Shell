@@ -168,3 +168,24 @@ shell script 實用小技巧
 
 
 
+---
+
+### 在shell script 中取出檔案修改的日期及時間
+
+方法一
+
+    MODDATE=$(stat -c %y test.txt)
+    MODDATE=${MODDATE%% *}
+    echo $MODDATE
+
+
+方法二
+
+    date -r test.txt +%F
+    
+
+用date 還可以取出日期+時間
+
+    date -r test.txt +'%Y-%m-%d %H:%M:%S'
+    
+參考來源: [Get file modification date/time in Bash script](http://www.linuxquestions.org/questions/programming-9/get-file-modification-date-time-in-bash-script-163731/)
