@@ -242,4 +242,6 @@ shell script 實用小技巧
 重點就是在這行``for i in $(eval echo {0..$maxidx})``
 
 
+參考來源: [How do I iterate over a range of numbers defined by variables in Bash?](http://stackoverflow.com/questions/169511/how-do-i-iterate-over-a-range-of-numbers-defined-by-variables-in-bash)
+
 ---
