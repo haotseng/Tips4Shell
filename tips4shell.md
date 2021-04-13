@@ -245,3 +245,16 @@ shell script 實用小技巧
 參考來源: [How do I iterate over a range of numbers defined by variables in Bash?](http://stackoverflow.com/questions/169511/how-do-i-iterate-over-a-range-of-numbers-defined-by-variables-in-bash)
 
 ---
+
+### 在 bash 下 將變數內容做大小寫轉換
+
+範例 script 如下: 
+
+    #!/bin/bash
+    var1='AbcDef'
+    echo $var1 | tr '[:upper:]' '[:lower:]'
+    echo $var1 | tr '[:lower:]' '[:upper:]'
+
+
+參考來源: [String replacement (to lowercase) in Bash 4.3.33 - bad substitution error](https://stackoverflow.com/questions/29855489/string-replacement-to-lowercase-in-bash-4-3-33-bad-substitution-error)
+
